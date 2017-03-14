@@ -69,15 +69,47 @@ LIGHT_GRAY="\[\033[0;37m\]"
 COLOR_NONE="\[\e[0m\]"
 
 # functions
+# Set the tab title in iTerm2.
+function tab_title {
+    echo -ne "\033]0;"$*"\007"
+}
+
+# Tell us which branch we're on, if we're in a git repo.
+function get_git_branch {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# Return count of uncommitted files in git repo.
+function uncommitted_file_count {
+    git status --porcelain 2>/dev/null| egrep "^(M| M|A|R)" | wc -l
+}
+
+# Return count of untracked files in git repo.
+function untracked_file_count {
+    git status --porcelain 2>/dev/null| grep "^??" | wc -l
+}
+
 function prompt_func() {
     previous_return_value=$?;
     data_center_domain=`hostname | awk -F . '{print $2}'`
-    prompt="${TITLEBAR}${LIGHT_BLUE}[${LIGHT_GREEN}\u${COLOR_NONE}@${CYAN}\h.${data_center_domain} ${WHITE}\w${GREEN}${LIGHT_BLUE}]${COLOR_NONE} "
+    #prompt="${TITLEBAR}${LIGHT_BLUE}[${LIGHT_GREEN}\u${COLOR_NONE}@${CYAN}\h.${data_center_domain} ${WHITE}\w${GREEN}${LIGHT_BLUE}]${COLOR_NONE}"
+    prompt="${TITLEBAR}${LIGHT_BLUE}[${LIGHT_GREEN}\u${COLOR_NONE}@${CYAN}\h.${data_center_domain} ${WHITE}\w${GREEN}${LIGHT_BLUE}]${COLOR_NONE}"
+    in_git_repo=$(get_git_branch)
+    if [ $in_git_repo ]; then
+        GIT_PROMPT="${LIGHT_GREEN}\$(get_git_branch)${COLOR_NONE}" # Default.
+        if [ $(uncommitted_file_count) -gt 0 ]; then
+            GIT_PROMPT="${CYAN}\$(get_git_branch)${COLOR_NONE}"
+        fi
+        if [ $(untracked_file_count) -gt 0 ]; then
+            GIT_PROMPT="${LIGHT_YELLOW}\$(get_git_branch)${COLOR_NONE}"
+        fi
+        prompt="${prompt} ${GIT_PROMPT}"
+    fi
     if [ $previous_return_value == 0 ]
     then
-        export PS1="${prompt}$ "
+        export PS1="${prompt} $ "
     else
-        export PS1="${prompt}${LIGHT_RED}OOPS! $ ${COLOR_NONE}"
+        export PS1="${prompt}${LIGHT_RED} OOPS! $ ${COLOR_NONE}"
     fi
 }
 
