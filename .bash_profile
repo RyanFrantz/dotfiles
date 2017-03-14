@@ -15,3 +15,4 @@ else
      start_agent
 fi
 
+tab_title example-name
