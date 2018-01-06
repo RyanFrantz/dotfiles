@@ -1,0 +1,29 @@
+[user]
+	name = Ryan Frantz
+	email = ryanleefrantz@gmail.com
+[credential]
+	helper = osxkeychain
+[color]
+    ui = true
+[alias]
+    st = status
+    rpull = pull --rebase --stat
+    subinit = submodule init
+    subpull = submodule foreach git pull
+    subout = submodule foreach git checkout master
+    #lg=log --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset%C(yellow)%d%Creset %Cgreen(%ci)%Creset %s' --graph
+    lg=log --graph --oneline --pretty --decorate --all
+[color "status"]
+    added=green
+    changed=cyan
+    #untracked=yellow reverse
+    untracked=yellow
+[color "diff"]
+    meta = yellow bold
+    frag = cyan bold
+[color "branch"]
+    current = green
+    local = cyan
+    remote = white
+[push]
+	default = simple
