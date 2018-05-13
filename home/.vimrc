@@ -79,6 +79,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 augroup blog_posts
     au BufNewFile ~/git/southpaw/_posts/*.md 0r ~/.vim/skeleton/blog_post.skel
+    au BufRead *.md set colorcolumn=80
 augroup end
 
 " Enable Pathogen to manage my vim plugins
