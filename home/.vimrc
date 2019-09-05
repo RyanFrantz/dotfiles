@@ -60,7 +60,10 @@ augroup END
 inoremap # X#
 
 " remember where we left off while editing
-set viminfo='20,\"50
+" https://stackoverflow.com/questions/7894330/preserve-last-editing-position-in-vim
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " enable file plugin files
 filetype plugin indent on
