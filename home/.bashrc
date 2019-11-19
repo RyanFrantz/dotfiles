@@ -40,12 +40,12 @@ ssh_agent_auth_socket_exists () {
 }
 # Detect SSH agent forwarding.
 ssh_agent_is_forwarding () {
-    [ ssh_agent_auth_socket_exists -a ! ssh_agent_is_running ]
+    ssh_agent_auth_socket_exists && ! ssh_agent_is_running
 }
 
 export SSH_ENV="$HOME/.ssh/agent_environment"
 start_ssh_agent () {
-    echo "Testing for existing ssh-agent..."
+    echo -e "\nTesting for an existing ssh-agent..."
     # Test for agent forwarding. If we're forwarding, running/using a local agent
     # will interfere.
     if ssh_agent_is_forwarding; then
@@ -90,7 +90,8 @@ export HISTSIZE=10000
 
 export EDITOR=vim
 
-export GREP_OPTIONS="--color=auto"
+# Ubuntu complains about this being deprecated.
+#export GREP_OPTIONS="--color=auto"
 
 export PROMPT_DIRTRIM=3
 
