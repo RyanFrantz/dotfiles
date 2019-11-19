@@ -6,6 +6,7 @@
 [color]
     ui = true
 [alias]
+    co = checkout
     st = status
     rpull = pull --rebase --stat
     subinit = submodule init
