@@ -5,6 +5,9 @@
 #export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+# Homebrew Ruby and gem binary paths.
+export PATH=/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
+
 # I dig dem colors!
 ## BSD `ls`
 alias ls="ls -G"
@@ -21,19 +24,60 @@ PS1="[\t \[\e[34;1m\]\u\[\e[0m\]@\[\e[34;1m\]\h\[\e[0m\] \[\e[33;1m\]\W\[\e[0m\]
 export PS1
 
 MY_SSH_KEYFILE=""
-# fire up ssh-agent; lifted/modded from http://mah.everybody.org/docs/ssh
-export SSH_ENV="$HOME/.ssh/environment"
-function start_agent {
-     echo -e "\n\t===== `hostname` =====\n"
-     echo "Initializing ssh-agent..."
-     ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"    # capture the output; comment the 'echo'
-     chmod 600 "${SSH_ENV}"
-     . "${SSH_ENV}" > /dev/null # source the output to set some env vars
-     /usr/bin/ssh-add   # add mah key!
-     if [ -f $MY_SSH_KEYFILE ]
-     then
-         /usr/bin/ssh-add $MY_SSH_KEYFILE
-     fi
+
+# Test if an ssh-agent process is defined and running.
+ssh_agent_is_running () {
+    if [ -n "${SSH_AGENT_PID}" ]; then
+        # Suppress the header from `ps`.
+        [ "`ps -p ${SSH_AGENT_PID} -o comm=''`" == "ssh-agent" ]
+    else
+        return 1
+    fi
+}
+
+ssh_agent_auth_socket_exists () {
+    [ -n "${SSH_AUTH_SOCK}" -a -S "${SSH_AUTH_SOCK}" ]
+}
+# Detect SSH agent forwarding.
+ssh_agent_is_forwarding () {
+    [ ssh_agent_auth_socket_exists -a ! ssh_agent_is_running ]
+}
+
+export SSH_ENV="$HOME/.ssh/agent_environment"
+start_ssh_agent () {
+    echo "Testing for existing ssh-agent..."
+    # Test for agent forwarding. If we're forwarding, running/using a local agent
+    # will interfere.
+    if ssh_agent_is_forwarding; then
+        echo "SSH agent forwarding detected. I will not start ssh-agent."
+        return
+    fi
+
+    if ssh_agent_is_running; then
+        echo "ssh-agent is already running..."
+        # Attempt to source the relevant environment variables that will allow
+        # us to use the existing agent.
+		. "${SSH_ENV}" > /dev/null # source the output to set some env vars
+        # Test we can talk to the agent.
+        ssh-add -l 2>&1 > /dev/null
+        result=$?
+        # 0 == we have keys; 1 == we can talk to the agent but no keys are loaded.
+		if [ $result -eq 0 -o $result -eq 1 ]; then
+            echo "Successfully connected to ssh-agent."
+        else
+            echo "Failed to connect to ssh-agent!"
+            return 1
+        fi
+    else
+        echo "Initializing ssh-agent..."
+        ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"    # capture the output; comment the 'echo'
+        chmod 600 "${SSH_ENV}"
+        . "${SSH_ENV}" > /dev/null # source the output to set some env vars
+        /usr/bin/ssh-add   # add mah key!
+        if [ -f $MY_SSH_KEYFILE ]; then
+            /usr/bin/ssh-add $MY_SSH_KEYFILE
+        fi
+    fi
 }
 
 # history-related config
@@ -120,3 +164,7 @@ PROMPT_COMMAND='prompt_func && history -a'
 # https://github.com/andsens/homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

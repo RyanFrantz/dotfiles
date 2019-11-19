@@ -3,16 +3,9 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-# Set GOPATH
-export GOPATH=$HOME/go
+# Ensure we clean up any lingering ssh-agent processes on shell exit.
+trap 'test -n "$SSH_AGENT_PID" && eval `ssh-agent -k`' 0
 
-# Fire up ssh-agent; lifted/modded from http://mah.everybody.org/docs/ssh
-if [ -f "${SSH_ENV}" ]
-then
-     . "${SSH_ENV}" > /dev/null
-	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent | grep -v grep > /dev/null || start_agent
-else
-     start_agent
-fi
+start_ssh_agent
 
-tab_title example-name
+tab_title frantz
