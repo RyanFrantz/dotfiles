@@ -41,12 +41,12 @@ ssh_agent_auth_socket_exists () {
 }
 # Detect SSH agent forwarding.
 ssh_agent_is_forwarding () {
-    [ ssh_agent_auth_socket_exists -a ! ssh_agent_is_running ]
+    ssh_agent_auth_socket_exists && ! ssh_agent_is_running
 }
 
 export SSH_ENV="$HOME/.ssh/agent_environment"
 start_ssh_agent () {
-    echo "Testing for existing ssh-agent..."
+    echo -e "\nTesting for an existing ssh-agent..."
     # Test for agent forwarding. If we're forwarding, running/using a local agent
     # will interfere.
     if ssh_agent_is_forwarding; then
@@ -58,12 +58,12 @@ start_ssh_agent () {
         echo "ssh-agent is already running..."
         # Attempt to source the relevant environment variables that will allow
         # us to use the existing agent.
-		. "${SSH_ENV}" > /dev/null # source the output to set some env vars
+        . "${SSH_ENV}" > /dev/null # source the output to set some env vars
         # Test we can talk to the agent.
         ssh-add -l 2>&1 > /dev/null
         result=$?
         # 0 == we have keys; 1 == we can talk to the agent but no keys are loaded.
-		if [ $result -eq 0 -o $result -eq 1 ]; then
+        if [ $result -eq 0 -o $result -eq 1 ]; then
             echo "Successfully connected to ssh-agent."
         else
             echo "Failed to connect to ssh-agent!"
@@ -91,7 +91,8 @@ export HISTSIZE=10000
 
 export EDITOR=vim
 
-export GREP_OPTIONS="--color=auto"
+# Ubuntu complains about this being deprecated.
+#export GREP_OPTIONS="--color=auto"
 
 export PROMPT_DIRTRIM=3
 
