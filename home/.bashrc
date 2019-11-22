@@ -9,13 +9,14 @@
 export PATH=/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
 
 # I dig dem colors!
-## BSD `ls`
-alias ls="ls -G"
-export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
-## GNU `ls`
-#alias ls="ls --color=auto"  # GNU `ls`
-#dircolors -p > ~/.dircolors
-#eval "`dircolors -b ~/.dircolors`"
+if [ "$(uname -s)" == "Darwin" ]; then
+    alias ls="ls -G"
+    export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+else # Assume Linux.
+    alias ls="ls --color=auto"
+    dircolors -p > ~/.dircolors
+    eval "`dircolors -b ~/.dircolors`"
+fi
 
 alias farg="find . -type f | xargs grep $@"
 
