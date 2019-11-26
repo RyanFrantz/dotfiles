@@ -1,0 +1,38 @@
+# Lifted and customized from work Randall Koutnik did.
+#
+export TF_DIR=~/git/jeli-dev-workstation/terraform
+
+# TF_VAR_ec2_instance_type=t2.medium TF_VAR_public_key_path=~/.ssh/ryan_ec2.pub TF_VAR_workstation_name="ryan-dev-$(date +%Y%m%dT%H%M)" terraform apply -auto-approve
+# Create a new jeli-dev instance
+ec2_key_path() {
+    echo "~/.ssh/ryan_ec2.pub"
+}
+
+mkvm() {
+  cd $TF_DIR;
+  local name="ryan-dev-$(date +%Y%m%dT%H%M)"
+  TF_VAR_ec2_instance_type=t2.medium \
+  TF_VAR_public_key_path=$(ec2_key_path) \
+  TF_VAR_workstation_name=${name} \
+  terraform apply
+  -auto-approve
+  cd -
+}
+
+# What's my DNS again?
+vmfqdn() {
+  echo $(terraform output -state=$TF_DIR/terraform.tfstate public_dns)
+}
+
+# SSH into dev instance
+sshvm() {
+  fqdn=$(terraform output -state=$TF_DIR/terraform.tfstate public_dns)
+  ssh ubuntu@$fqdn
+}
+
+# Destroy current dev instance
+rmvm() {
+  cd $TF_DIR;
+  terraform destroy -target aws_instance.dev-workstation
+  cd -
+}
