@@ -172,4 +172,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Source aliases and functions from a directory.
-. ~/.bash_aliases/
+for FILE in ~/.bash_aliases/*; do source $FILE; done
