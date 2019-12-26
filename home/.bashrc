@@ -120,6 +120,23 @@ function tab_title {
     echo -ne "\033]0;"$*"\007"
 }
 
+function dbranch () {
+    if [ $# -eq 0 ]; then
+        echo "Usage: dbranch <branch_to_delete>"
+    else
+        BRANCH=$1
+        echo "Deleting '${BRANCH}' branch locally and upstream..."
+        #git branch -D $BRANCH
+        #git push --delete origin $BRANCH
+        if [ $(get_git_branch) == "(${BRANCH})" ]; then
+            echo "We're currently in branch '${BRANCH}'! Checking out master before proceeding..."
+            git checkout master
+        fi
+        git branch -D $BRANCH
+        git push --delete origin $BRANCH
+    fi
+}
+
 # Tell us which branch we're on, if we're in a git repo.
 function get_git_branch {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
