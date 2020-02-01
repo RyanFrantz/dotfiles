@@ -170,9 +170,9 @@ function prompt_func() {
     fi
     if [ $previous_return_value == 0 ]
     then
-        export PS1="${prompt} $ "
+        export PS1="${prompt}\n$ "
     else
-        export PS1="${prompt}${LIGHT_RED} OOPS! $ ${COLOR_NONE}"
+        export PS1="${prompt}\n${LIGHT_RED}OOPS! $ ${COLOR_NONE}"
     fi
 }
 
