@@ -18,7 +18,7 @@ else # Assume Linux.
     eval "`dircolors -b ~/.dircolors`"
 fi
 
-alias farg="find . -type f | xargs grep $@"
+alias farg="find . -type f | xargs grep $@ 2>/dev/null"
 
 # "[login@hostname ~/git/dotfiles] $"
 PS1="[\t \[\e[34;1m\]\u\[\e[0m\]@\[\e[34;1m\]\h\[\e[0m\] \[\e[33;1m\]\W\[\e[0m\]]\$ "
