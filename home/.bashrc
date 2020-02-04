@@ -152,6 +152,19 @@ function untracked_file_count {
     git status --porcelain 2>/dev/null| grep "^??" | wc -l
 }
 
+# Test if we're in a python virtualenv.
+function in_venv {
+    # If these match, we're not in a venv.
+    python3 -c 'import sys; sys.exit(1) if sys.prefix == sys.base_prefix else sys.exit(0)'
+}
+
+# If we're in a Python virtualenv say so. Use this in our prompt.
+function venv_prompt {
+    if in_venv; then
+        echo "${LIGHT_CYAN}(venv)${COLOR_NONE}"
+    fi
+}
+
 function prompt_func() {
     previous_return_value=$?;
     data_center_domain=`hostname | awk -F . '{print $2}'`
@@ -166,13 +179,13 @@ function prompt_func() {
         if [ $(untracked_file_count) -gt 0 ]; then
             GIT_PROMPT="${LIGHT_YELLOW}\$(get_git_branch)${COLOR_NONE}"
         fi
-        prompt="${prompt} ${GIT_PROMPT}"
+        prompt="${prompt} $(venv_prompt) ${GIT_PROMPT}"
     fi
     if [ $previous_return_value == 0 ]
     then
         export PS1="${prompt}\n$ "
     else
-        export PS1="${prompt}\n${LIGHT_RED}OOPS! $ ${COLOR_NONE}"
+        export PS1="${prompt}\n${LIGHT_RED}OOPS! ${COLOR_NONE}$ "
     fi
 }
 
