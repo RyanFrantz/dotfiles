@@ -190,7 +190,8 @@ function prompt_func() {
 }
 
 # This way you get the host/path in the title bar and the pretty PS1 _and_ history is appended all the time
-PROMPT_COMMAND='prompt_func && history -a'
+# NOTE: We append to the history file, clear the history *list*, and then read the history file.
+PROMPT_COMMAND='history -a && history -c && history -r; prompt_func'
 
 # Source homeshick config.
 # https://github.com/andsens/homeshick
