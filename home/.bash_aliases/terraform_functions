@@ -21,12 +21,15 @@ mkvm() {
 
 # What's my DNS again?
 vmfqdn() {
-  echo $(terraform output public_dns)
+  cd $TF_DIR
+  fqdn=$(terraform output public_dns)
+  cd - > /dev/null
+  echo $fqdn
 }
 
 # SSH into dev instance
 sshvm() {
-  fqdn=$(terraform output public_dns)
+  fqdn=$(vmfqdn)
   ssh ubuntu@$fqdn
 }
 
