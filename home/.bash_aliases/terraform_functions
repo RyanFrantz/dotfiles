@@ -1,6 +1,6 @@
 # Lifted and customized from work Randall Koutnik did.
 #
-export TF_DIR=~/git/jeli-dev-workstation/terraform
+export TF_DIR=~/git/jeli-dev-workstation/terraform/users/rfrantz
 
 # TF_VAR_ec2_instance_type=t2.medium TF_VAR_public_key_path=~/.ssh/ryan_ec2.pub TF_VAR_workstation_name="ryan-dev-$(date +%Y%m%dT%H%M)" terraform apply -auto-approve
 # Create a new jeli-dev instance
@@ -14,19 +14,19 @@ mkvm() {
   TF_VAR_ec2_instance_type=t2.medium \
   TF_VAR_public_key_path=$(ec2_key_path) \
   TF_VAR_workstation_name=${name} \
-  terraform apply
+  terraform apply \
   -auto-approve
   cd -
 }
 
 # What's my DNS again?
 vmfqdn() {
-  echo $(terraform output -state=$TF_DIR/terraform.tfstate public_dns)
+  echo $(terraform output public_dns)
 }
 
 # SSH into dev instance
 sshvm() {
-  fqdn=$(terraform output -state=$TF_DIR/terraform.tfstate public_dns)
+  fqdn=$(terraform output public_dns)
   ssh ubuntu@$fqdn
 }
 
