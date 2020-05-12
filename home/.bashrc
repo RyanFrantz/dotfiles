@@ -198,6 +198,10 @@ PROMPT_COMMAND='history -a && history -c && history -r; prompt_func'
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
+# Depends on having run `homeshick clone git@github.com:Jeli-Inc/adr-tools.git`
+ADR_PATH=${HOME}/.homesick/repos/adr-tools/src
+export PATH=${PATH}:${ADR_PATH}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
