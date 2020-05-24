@@ -166,7 +166,6 @@ function venv_prompt {
 }
 
 function prompt_func() {
-    previous_return_value=$?;
     data_center_domain=`hostname | awk -F . '{print $2}'`
     #prompt="${TITLEBAR}${LIGHT_BLUE}[${LIGHT_GREEN}\u${COLOR_NONE}@${CYAN}\h.${data_center_domain} ${WHITE}\w${GREEN}${LIGHT_BLUE}]${COLOR_NONE}"
     prompt="${TITLEBAR}${LIGHT_BLUE}[${LIGHT_GREEN}\u${COLOR_NONE}@${CYAN}\h.${data_center_domain} ${WHITE}\w${GREEN}${LIGHT_BLUE}]${COLOR_NONE}"
@@ -179,8 +178,9 @@ function prompt_func() {
         if [ $(untracked_file_count) -gt 0 ]; then
             GIT_PROMPT="${LIGHT_YELLOW}\$(get_git_branch)${COLOR_NONE}"
         fi
-        prompt="${prompt} $(venv_prompt) ${GIT_PROMPT}"
+        prompt="${prompt} ${GIT_PROMPT}"
     fi
+    prompt="${prompt} $(venv_prompt)"
     if [ $previous_return_value == 0 ]
     then
         export PS1="${prompt}\n$ "
@@ -191,7 +191,7 @@ function prompt_func() {
 
 # This way you get the host/path in the title bar and the pretty PS1 _and_ history is appended all the time
 # NOTE: We append to the history file, clear the history *list*, and then read the history file.
-PROMPT_COMMAND='history -a && history -c && history -r; prompt_func'
+PROMPT_COMMAND='export previous_return_value=$?; history -a && history -c && history -r; prompt_func'
 
 # Source homeshick config.
 # https://github.com/andsens/homeshick
