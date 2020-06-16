@@ -129,8 +129,10 @@ function dbranch () {
         #git branch -D $BRANCH
         #git push --delete origin $BRANCH
         if [ $(get_git_branch) == "(${BRANCH})" ]; then
-            echo "We're currently in branch '${BRANCH}'! Checking out master before proceeding..."
-            git checkout master
+            echo "We're currently in branch '${BRANCH}'! Checking out default branch before proceeding..."
+            git checkout master || git checkout main
+            echo "Current branch:"
+            git branch --show-current
         fi
         git branch -D $BRANCH
         git push --delete origin $BRANCH
