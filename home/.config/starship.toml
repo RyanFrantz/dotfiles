@@ -1,0 +1,18 @@
+# https://starship.rs/config/#git-branch
+[git_branch]
+#symbol = "🌱 "
+#symbol = "ψ " # lower-case psi; in case we don't have a Nerd Font installed/activated in iTerm2.
+truncation_length = 20
+truncation_symbol = "…"
+
+[directory]
+truncation_length = 5
+
+[hostname]
+ssh_only = false
+trim_at = ""
+prefix = "⟪"
+suffix = "⟫"
+
+[username]
+show_always = true
