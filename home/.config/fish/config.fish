@@ -2,9 +2,7 @@
 
 source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 # Ensure SSH_ENV_FISH is exported and known across all fish instances.
-if test -z "$SSH_ENV_FISH"
-    set -Ux SSH_ENV_FISH $HOME/.ssh/agent_environment.fish
-end
+set -g SSH_ENV_FISH $HOME/.ssh/agent_environment.fish
 
 start_ssh_agent
 
