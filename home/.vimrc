@@ -85,5 +85,8 @@ augroup blog_posts
     au BufRead *.md set colorcolumn=80
 augroup end
 
+" Move the cursor to the 80th column. I use this when fixing up markdown files.
+nnoremap ,, 80\|
+
 " Enable Pathogen to manage my vim plugins
 execute pathogen#infect()
