@@ -59,8 +59,12 @@ augroup END
 " Comments should be inline with my current indent.
 inoremap # X#
 
-" Add '.' support to repeat commands while in visual mode.
+" Add '.' support to repeat commands while in visual mode. - Mastering Vim.
 vnoremap . :normal . <CR>
+
+" Move visual selection up or down, rather than copy/paste - Mastering Vim.
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 " remember where we left off while editing
 " https://stackoverflow.com/questions/7894330/preserve-last-editing-position-in-vim
