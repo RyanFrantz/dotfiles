@@ -92,8 +92,14 @@ augroup blog_posts
     au BufRead *.md set colorcolumn=80
 augroup end
 
+" Use the space bar as the leader key
+let mapleader = "\<Space>"
+" Clear highlighted search results.
+nnoremap <Leader>, :nohlsearch<CR>
 " Move the cursor to the 80th column. I use this when fixing up markdown files.
 nnoremap ,, 80\|
+" Highlight trailing whitespace
+match ErrorMsg '\s\+$'
 
 " Enable Pathogen to manage my vim plugins
 execute pathogen#infect()
