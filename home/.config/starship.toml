@@ -11,8 +11,14 @@ truncation_length = 5
 [hostname]
 ssh_only = false
 trim_at = ""
-prefix = "⟪"
-suffix = "⟫"
+#prefix = "⟪"
+#suffix = "⟫"
+format = "[$hostname]($style) in "
+
+[status]
+disabled = false
+format = "[$symbol OOPS! Status=$status\n]($style)"
 
 [username]
+format = "[$user]($style)@"
 show_always = true
