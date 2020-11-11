@@ -11,3 +11,5 @@ set -g fish_color_command normal # Better legibility
 
 # Launch starship.
 starship init fish | source
+
+source (brew --prefix asdf)/asdf.fish

@@ -13,3 +13,5 @@ trap '
 start_ssh_agent
 
 tab_title frantz
+
+. /usr/local/opt/asdf/asdf.sh
