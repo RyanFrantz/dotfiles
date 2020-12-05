@@ -212,4 +212,6 @@ export NVM_DIR="$HOME/.nvm"
 for FILE in ~/.bash_aliases/*; do source $FILE; done
 
 # Source miscellany I don't want to store in version control.
-for FILE in ~/.bash_misc/*; do source $FILE; done
+if [ -d ~/.bash_misc ]; then
+  for FILE in ~/.bash_misc/*; do source $FILE; done
+fi
