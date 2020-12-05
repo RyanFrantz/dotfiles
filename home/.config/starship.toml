@@ -1,9 +1,26 @@
-# https://starship.rs/config/#git-branch
-[git_branch]
-#symbol = "🌱 "
-#symbol = "ψ " # lower-case psi; in case we don't have a Nerd Font installed/activated in iTerm2.
-truncation_length = 20
-truncation_symbol = "…"
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+$aws\
+$kubernetes\
+$custom\
+$line_break\
+$erlang\
+$golang\
+$helm\
+$nodejs\
+$python\
+$ruby\
+$line_break\
+$jobs\
+$battery\
+$status\
+$character"""
 
 [directory]
 truncation_length = 5
@@ -14,6 +31,32 @@ trim_at = ""
 #prefix = "⟪"
 #suffix = "⟫"
 format = "[$hostname]($style) in "
+
+[aws]
+format = " [$symbol$profile(($region))]($style)"
+
+[helm]
+# Some projects require so many tools they overwhelm Starship.
+disabled = true
+
+[jobs]
+threshold = 0
+format = "[bg jobs:$number\n]($style)"
+
+[kubernetes]
+disabled = false
+# This doesn't show the namespace. Maybe I write a custom command
+# that uses kubectx and kubens.
+format = "[ ⛵ $context (($namespace))]($style)"
+
+[nodejs]
+format = " [$symbol$version]($style)"
+
+[python]
+format = " [$symbol$version (($virtualenv))]($style)"
+
+[ruby]
+format = " [$symbol$version]($style)"
 
 [status]
 disabled = false

@@ -210,3 +210,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Source aliases and functions from a directory.
 for FILE in ~/.bash_aliases/*; do source $FILE; done
+
+# Source miscellany I don't want to store in version control.
+for FILE in ~/.bash_misc/*; do source $FILE; done
