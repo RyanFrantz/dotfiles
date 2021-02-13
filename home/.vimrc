@@ -1,4 +1,5 @@
 syntax on
+set nocompatible           " Force Vim. I think the presence of .vimrc implies this, but be safe.
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -72,9 +73,6 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" enable file plugin files
-filetype plugin indent on
-
 " Open new files with some useful boilerplate.
 augroup c_files
     au BufNewFile *.c 0r ~/.vim/skeleton/c.skel
@@ -101,5 +99,17 @@ nnoremap ,, 80\|
 " Highlight trailing whitespace
 match ErrorMsg '\s\+$'
 
-" Enable Pathogen to manage my vim plugins
-execute pathogen#infect()
+" Use Vundle to manage plugins.
+" Since we're using fish, call `updatevundle` from the command line to
+" install/update plugins.
+" set the runtime path to include Vundle and initialize
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+" enable file plugin files
+filetype plugin indent on
