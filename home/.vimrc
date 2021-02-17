@@ -120,3 +120,8 @@ call vundle#end()            " required
 set backspace=indent,eol,start
 " enable file plugin files
 filetype plugin indent on
+
+" Disable YouCompleteMe documentation popups.
+" This can be manually triggered with something like the following:
+" nmap <leader>D <plug>(YCMHover)
+let g:ycm_auto_hover = ""
