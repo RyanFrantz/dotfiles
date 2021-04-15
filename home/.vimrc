@@ -24,7 +24,14 @@ set ignorecase              " ignore case when searching
 " ---------------------------------------------------------
 "set t_Co=256                " Use 256 terminal palette.
 set cursorline               " Highlight the current line.
-colorscheme delek
+" Color fix from https://github.com/vim/vim/issues/3608
+" This is only necessary if you use "set termguicolors".
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" fixes glitch? in colors when using vim with tmux
+set background=dark
+set t_Co=256
+set termguicolors
 
 " Status line
 set statusline=%<%F\ \|                     " File name, truncated if need be.
@@ -113,8 +120,12 @@ Plugin 'editorconfig/editorconfig-vim'
 " YCM support needs to be compiled. Hop into the plugin directory and do so:
 " cd $HOME/.vim/bundle/YouCompleteMe && python3 install.py --all
 Plugin 'ycm-core/YouCompleteMe'
+" auto-pairs acts up in annoying ways that end up creating more work for me.
+"Plugin 'jiangmiao/auto-pairs'
 " All of your Plugins must be added before the following line
+Plugin 'bluz71/vim-nightfly-guicolors'
 call vundle#end()            " required
+" NOTE: Run :PluginInstall in a vim session to install/update plugins.
 
 " Allow backspace in insert mode.
 set backspace=indent,eol,start
@@ -125,3 +136,5 @@ filetype plugin indent on
 " This can be manually triggered with something like the following:
 " nmap <leader>D <plug>(YCMHover)
 let g:ycm_auto_hover = ""
+
+colorscheme nightfly
