@@ -124,6 +124,8 @@ Plugin 'ycm-core/YouCompleteMe'
 "Plugin 'jiangmiao/auto-pairs'
 " All of your Plugins must be added before the following line
 Plugin 'bluz71/vim-nightfly-guicolors'
+" After :PluginInstall, run :call mkdp#util#install()
+Plugin 'iamcco/markdown-preview.nvim'
 call vundle#end()            " required
 " NOTE: Run :PluginInstall in a vim session to install/update plugins.
 
@@ -136,5 +138,9 @@ filetype plugin indent on
 " This can be manually triggered with something like the following:
 " nmap <leader>D <plug>(YCMHover)
 let g:ycm_auto_hover = ""
+
+" Call :MarkdownPreview after entering a markdown buffer.
+" The default browser will open at a random port on localhost.
+let g:mkdp_auto_start = 1
 
 colorscheme nightfly
