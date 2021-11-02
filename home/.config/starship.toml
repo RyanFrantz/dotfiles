@@ -40,7 +40,7 @@ format = " [$symbol$profile(($region))]($style)"
 disabled = true
 
 [jobs]
-threshold = 0
+number_threshold = 1
 format = "[bg jobs:$number\n]($style)"
 
 [kubernetes]
