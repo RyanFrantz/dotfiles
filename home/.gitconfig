@@ -28,6 +28,7 @@
     remote = white
 [push]
 	default = simple
+	autoSetupRemote = true
 [init]
 	defaultBranch = main
 [pull]

@@ -122,6 +122,9 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ycm-core/YouCompleteMe'
 " auto-pairs acts up in annoying ways that end up creating more work for me.
 "Plugin 'jiangmiao/auto-pairs'
+" Sigh, I suspect this plugin is forcing insert mode on me after returning to
+" normal mode.
+"Plugin 'townk/vim-autoclose'
 " All of your Plugins must be added before the following line
 Plugin 'bluz71/vim-nightfly-guicolors'
 " After :PluginInstall, run :call mkdp#util#install()
