@@ -119,7 +119,7 @@ Plugin 'editorconfig/editorconfig-vim'
 " YCM doesn't work with the OS-provided vim on Macs. Run `brew install vim`.
 " YCM support needs to be compiled. Hop into the plugin directory and do so:
 " cd $HOME/.vim/bundle/YouCompleteMe && python3 install.py --all
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 " auto-pairs acts up in annoying ways that end up creating more work for me.
 "Plugin 'jiangmiao/auto-pairs'
 " Sigh, I suspect this plugin is forcing insert mode on me after returning to
@@ -146,4 +146,6 @@ let g:ycm_auto_hover = ""
 " The default browser will open at a random port on localhost.
 let g:mkdp_auto_start = 1
 
-colorscheme nightfly
+if !has('nvim')
+  colorscheme nightfly
+endif
