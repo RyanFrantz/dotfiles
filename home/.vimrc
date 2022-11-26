@@ -121,6 +121,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'bluz71/vim-nightfly-guicolors'
 " After :PluginInstall, run :call mkdp#util#install()
 Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'neoclide/coc.nvim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " NOTE: Run :PluginInstall in a vim session to install/update plugins.
