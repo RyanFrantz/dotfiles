@@ -143,3 +143,9 @@ let g:mkdp_auto_start = 1
 if !has('nvim')
   colorscheme nightfly
 endif
+
+" Browse our files.
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3     " tree
+let g:netrw_browse_split = 0  " reuse the same window
+let g:netrw_winsize = 20
