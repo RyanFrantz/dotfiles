@@ -14,4 +14,6 @@ starship init fish | source
 
 if test (uname -s) = "Darwin"
     source (brew --prefix asdf)/asdf.fish
+else
+    source ~/.asdf/asdf.fish
 end
