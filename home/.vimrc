@@ -12,7 +12,6 @@ set smarttab
 set smartindent
 set autoread                " re-read files automatically if they are changed
 set laststatus=2            " always show the status bar
-set ruler                   " ruler isn't a bad thing
 set showmatch               " bracket matching
 set showmode                " show current mode
 set scrolloff=999           " keep cursor in the middle
@@ -110,7 +109,6 @@ match ErrorMsg '\s\+$'
 " Since we're using fish, call `updatevundle` from the command line to
 " install/update plugins.
 " set the runtime path to include Vundle and initialize
-filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle, required
@@ -120,15 +118,10 @@ Plugin 'editorconfig/editorconfig-vim'
 " YCM support needs to be compiled. Hop into the plugin directory and do so:
 " cd $HOME/.vim/bundle/YouCompleteMe && python3 install.py --all
 "Plugin 'ycm-core/YouCompleteMe'
-" auto-pairs acts up in annoying ways that end up creating more work for me.
-"Plugin 'jiangmiao/auto-pairs'
-" Sigh, I suspect this plugin is forcing insert mode on me after returning to
-" normal mode.
-"Plugin 'townk/vim-autoclose'
-" All of your Plugins must be added before the following line
 Plugin 'bluz71/vim-nightfly-guicolors'
 " After :PluginInstall, run :call mkdp#util#install()
 Plugin 'iamcco/markdown-preview.nvim'
+" All of your Plugins must be added before the following line
 call vundle#end()            " required
 " NOTE: Run :PluginInstall in a vim session to install/update plugins.
 
@@ -146,6 +139,7 @@ let g:ycm_auto_hover = ""
 " The default browser will open at a random port on localhost.
 let g:mkdp_auto_start = 1
 
+" nvim complains about nightfly's use of 'nocombine'.
 if !has('nvim')
   colorscheme nightfly
 endif
