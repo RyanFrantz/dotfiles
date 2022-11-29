@@ -114,10 +114,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'editorconfig/editorconfig-vim'
-" YCM doesn't work with the OS-provided vim on Macs. Run `brew install vim`.
-" YCM support needs to be compiled. Hop into the plugin directory and do so:
-" cd $HOME/.vim/bundle/YouCompleteMe && python3 install.py --all
-"Plugin 'ycm-core/YouCompleteMe'
 Plugin 'bluz71/vim-nightfly-guicolors'
 " After :PluginInstall, run :call mkdp#util#install()
 Plugin 'iamcco/markdown-preview.nvim'
@@ -130,11 +126,6 @@ call vundle#end()            " required
 set backspace=indent,eol,start
 " enable file plugin files
 filetype plugin indent on
-
-" Disable YouCompleteMe documentation popups.
-" This can be manually triggered with something like the following:
-" nmap <leader>D <plug>(YCMHover)
-let g:ycm_auto_hover = ""
 
 " Call :MarkdownPreview after entering a markdown buffer.
 " The default browser will open at a random port on localhost.
