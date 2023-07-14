@@ -6,13 +6,7 @@ $directory\
 $git_branch\
 $git_status\
 $line_break\
-$aws\
-$kubernetes\
-$custom\
-$line_break\
-$erlang\
 $golang\
-$helm\
 $nodejs\
 $python\
 $ruby\
@@ -34,10 +28,6 @@ format = "[$hostname]($style) in "
 
 [aws]
 format = " [$symbol$profile(($region))]($style)"
-
-[helm]
-# Some projects require so many tools they overwhelm Starship.
-disabled = true
 
 [jobs]
 number_threshold = 1

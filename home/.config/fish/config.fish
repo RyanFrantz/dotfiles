@@ -12,8 +12,5 @@ set -g fish_color_command normal # Better legibility
 # Launch starship.
 starship init fish | source
 
-if test (uname -s) = "Darwin"
-    source (brew --prefix asdf)/asdf.fish
-else
-    source ~/.asdf/asdf.fish
-end
+# Created by `pipx` on 2023-02-03 00:18:41
+set PATH $PATH /Users/ryan/.local/bin
