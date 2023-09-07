@@ -26,6 +26,13 @@ plugins = {
       lazy = false,
       priority = 1000  -- Load before other plugins
     },
+    -- Folks love treesitter for improved syntax highlighting. Try it.
+    {
+      'nvim-treesitter/nvim-treesitter',
+      config = function()
+      vim.cmd [[TSUpdate]]
+      end,
+    }
 }
 
 require("lazy").setup(plugins)
