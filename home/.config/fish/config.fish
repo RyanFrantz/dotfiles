@@ -1,6 +1,3 @@
-# Pull in homeshick support
-
-source "$HOME/.homesick/repos/homeshick/homeshick.fish"
 # Ensure SSH_ENV_FISH is exported and known across all fish instances.
 set -g SSH_ENV_FISH $HOME/.ssh/agent_environment.fish
 
