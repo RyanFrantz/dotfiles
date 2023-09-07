@@ -32,7 +32,10 @@ plugins = {
       config = function()
       vim.cmd [[TSUpdate]]
       end,
-    }
+    },
+    {
+      "mbbill/undotree"
+    },
 }
 
 require("lazy").setup(plugins)
