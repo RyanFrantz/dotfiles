@@ -1,2 +1,4 @@
 *.swp
 home/.bash_misc
+# lazy.nvim
+lazy-lock.json
