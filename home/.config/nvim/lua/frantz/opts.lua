@@ -24,4 +24,5 @@ opt.scrolloff = 99          -- Keep the cursor in the middle of the screen
 opt.swapfile = false        -- Don't use swapfile
 opt.incsearch = true
 opt.cursorline = true       -- Highlight the current line
+opt.guicursor = ""          -- Juicy cursor even in edit mode.
 opt.signcolumn = "auto"     -- auto = only when something to display; default
