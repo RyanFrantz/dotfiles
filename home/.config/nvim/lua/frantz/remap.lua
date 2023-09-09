@@ -11,3 +11,9 @@ vim.keymap.set("n", "<leader>p", ":set paste<CR>", {noremap = true})
 vim.keymap.set("n", "<leader>n", ":set nopaste<CR>", {noremap = true})
 -- Y in nvim is not your father's Y: https://github.com/neovim/neovim/pull/13268
 vim.keymap.set("n", "Y", "Y", {noremap = true}) -- Yank complete lines.
+
+-- Add '.' support to repeat commands while in visual mode. - Mastering Vim.
+vim.keymap.set("v", ".", ":normal . <CR>", {noremap = true})
+-- Move visual selection up or down, rather than copy/paste - Mastering Vim.
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {noremap = true})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {noremap = true})
