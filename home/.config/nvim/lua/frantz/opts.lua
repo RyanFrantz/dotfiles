@@ -24,4 +24,4 @@ opt.scrolloff = 99          -- Keep the cursor in the middle of the screen
 opt.swapfile = false        -- Don't use swapfile
 opt.incsearch = true
 opt.cursorline = true       -- Highlight the current line
---opt.signcolumn = "auto"     -- auto = only when something to display; number = use number column
+opt.signcolumn = "auto"     -- auto = only when something to display; default
