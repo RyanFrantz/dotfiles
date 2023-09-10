@@ -1,3 +1,6 @@
+-- Note to self: Neovim supports EditorConfig by default.
+-- vim.g.editorconfig = true
+
 -- Set options.
 local opt = vim.opt -- Save us some keystrokes.
 
