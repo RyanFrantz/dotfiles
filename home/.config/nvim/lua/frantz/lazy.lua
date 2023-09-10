@@ -47,7 +47,12 @@ plugins = {
         {'hrsh7th/cmp-nvim-lsp'}, -- Required
         {'L3MON4D3/LuaSnip'},     -- Required
       }
-    }
+    },
+    -- Close pairs of things. Consider "windwp/nvim-autopairs" if we want to get
+    -- super fancy and advanced.
+    {
+      "m4xshen/autoclose.nvim",
+    },
 }
 
 require("lazy").setup(plugins)
