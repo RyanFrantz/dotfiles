@@ -14,10 +14,10 @@ opt.showmatch = true        -- Highlight matching parenthesis
 opt.colorcolumn = '80'      -- Line length marker at 80 columns
 opt.ignorecase = true       -- Ignore case letters when search
 opt.termguicolors = true    -- Enable 24-bit RGB colors
-opt.laststatus=2            -- always show
+opt.laststatus = 2            -- always show
 opt.expandtab = true        -- Use spaces instead of tabs
-opt.shiftwidth = 4          -- Shift 4 spaces when tab
-opt.tabstop = 4             -- 1 tab == 4 spaces
+opt.shiftwidth = 2          -- Shift 2 spaces when tab
+opt.tabstop = 2             -- 1 tab == 2 spaces
 opt.smartindent = true      -- Autoindent new lines
 opt.updatetime = 250        -- ms to wait for trigger an event
 opt.scrolloff = 99          -- Keep the cursor in the middle of the screen
