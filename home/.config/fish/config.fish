@@ -11,3 +11,6 @@ starship init fish | source
 
 # Created by `pipx` on 2023-02-03 00:18:41
 set PATH $PATH /Users/ryan/.local/bin
+
+# I've moved on...'
+alias vim="nvim"
