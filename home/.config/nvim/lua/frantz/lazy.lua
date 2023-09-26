@@ -53,6 +53,9 @@ plugins = {
     {
       "m4xshen/autoclose.nvim",
     },
+    {
+      "tpope/vim-fugitive"
+    },
 }
 
 require("lazy").setup(plugins)
