@@ -43,7 +43,7 @@ format = "[ ⛵ $context (($namespace))]($style)"
 format = " [$symbol$version]($style)"
 
 [python]
-format = " [$symbol$version (($virtualenv))]($style)"
+format = " [$symbol$version ((venv: '$virtualenv'))]($style)"
 
 [ruby]
 format = " [$symbol$version]($style)"
