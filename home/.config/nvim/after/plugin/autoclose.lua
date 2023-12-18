@@ -3,5 +3,8 @@
 require("autoclose").setup({
   keys = {
     ["'"] = { close = false }
-  }
+  },
+  options = {
+    disable_when_touch = true,
+  },
 })
