@@ -6,5 +6,7 @@ require("autoclose").setup({
   },
   options = {
     disable_when_touch = true,
+    -- Extend regex to include forward slashes.
+    touch_regex = "[%w(%[{/]",
   },
 })
