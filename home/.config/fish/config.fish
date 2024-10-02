@@ -14,6 +14,3 @@ set PATH $PATH /Users/ryan/.local/bin
 
 # I've moved on...'
 alias vim="nvim"
-
-# If `asdf` appears to be present, source it's fish config.
-test -f ~/.asdf/asdf.fish && source ~/.asdf/asdf.fish
