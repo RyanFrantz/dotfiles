@@ -35,3 +35,8 @@
 	rebase = true
 [core]
 	editor = nvim
+# While in a work-related repo (with a .git/ dir), use a work-related config.
+# Used to override user.email, at least.
+# NOTE: The include path is not managed in my dotfiles.
+[includeIf "gitdir:~/git-for-work/"]
+  path = "~/.gitconfig-for-work"
