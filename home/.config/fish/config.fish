@@ -1,5 +1,5 @@
 # Ensure SSH_ENV_FISH is exported and known across all fish instances.
-set -g SSH_ENV_FISH $HOME/.ssh/agent_environment.fish
+set -Ux SSH_ENV_FISH $HOME/.ssh/agent_environment.fish
 
 start_ssh_agent
 
