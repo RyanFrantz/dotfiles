@@ -11,3 +11,17 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
       vim.api.nvim_exec("silent! normal! g'.", false)
     end,
 })
+
+vim.api.nvim_create_augroup('jekyll_posts', {})
+-- Sprinkle some light template on new Jekyll blog posts.
+vim.api.nvim_create_autocmd({"BufNewFile"}, {
+    group = "jekyll_posts",
+    pattern = { "*/_posts/*.md"},
+    command = "0r ~/.vim/skeleton/blog_post.skel"
+})
+
+-- I like my Markdown lines terminated at 80 paces.
+vim.api.nvim_create_autocmd({"BufRead"}, {
+    pattern = { "*.md"},
+    command = "set colorcolumn=80"
+})
