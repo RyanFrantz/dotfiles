@@ -12,6 +12,7 @@ function dbranch -a 'branch_name' -d "Delete a git branch locally and remotely"
         echo "Checking out default branch before proceeding..."
         set_color normal
         git checkout main || git checkout master || return 1
+        git pull
     end
 
     git branch -D $branch_name            # Local
