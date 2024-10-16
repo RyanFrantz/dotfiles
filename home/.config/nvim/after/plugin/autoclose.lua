@@ -2,7 +2,8 @@
 -- them from my comments when I use contractions.
 require("autoclose").setup({
   keys = {
-    ["'"] = { close = false }
+    ["'"] = { close = false },
+    ["`"] = { close = false },
   },
   options = {
     disable_when_touch = true,
