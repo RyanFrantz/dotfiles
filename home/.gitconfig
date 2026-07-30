@@ -40,3 +40,6 @@
 # NOTE: The include path is not managed in my dotfiles.
 [includeIf "gitdir:~/git-for-work/"]
   path = "~/.gitconfig-for-work"
+
+[url "ssh://git@code.ssnc.dev/"]
+	insteadOf = https://code.ssnc.dev/

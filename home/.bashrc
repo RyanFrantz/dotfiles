@@ -197,8 +197,8 @@ PROMPT_COMMAND='export previous_return_value=$?; history -a && history -c && his
 
 # Source homeshick config.
 # https://github.com/andsens/homeshick
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
+#source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+#source "$HOME/.homesick/repos/homeshick/completions/homeshick-completion.bash"
 
 # Depends on having run `homeshick clone git@github.com:Jeli-Inc/adr-tools.git`
 ADR_PATH=${HOME}/.homesick/repos/adr-tools/src
@@ -215,3 +215,5 @@ for FILE in ~/.bash_aliases/*; do source $FILE; done
 if [ -d ~/.bash_misc ]; then
   for FILE in ~/.bash_misc/*; do source $FILE; done
 fi
+
+export PATH=${PATH}:$(go env GOPATH)/bin

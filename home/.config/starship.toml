@@ -11,6 +11,8 @@ $nodejs\
 $python\
 $ruby\
 $line_break\
+$kubernetes\
+$line_break\
 $jobs\
 $battery\
 $status\
